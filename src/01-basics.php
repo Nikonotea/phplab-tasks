@@ -10,7 +10,7 @@
  * @return string
  * @throws InvalidArgumentException
  */
-function getMinuteQuarter(int $minute)
+function getMinuteQuarter(int $minute): string
 {
     if ($minute > 60 || $minute < 0) {
         throw new InvalidArgumentException('The $minute variable contains a negative number of greater then 60');
