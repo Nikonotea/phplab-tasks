@@ -37,8 +37,12 @@ function getMinuteQuarter(int $minute): string
  * @return boolean
  * @throws InvalidArgumentException
  */
-function isLeapYear(int $year)
+function isLeapYear(int $year): bool
 {
+    if ($year < 1900) {
+        throw new InvalidArgumentException('The $year variable is lower then 1900');
+    }
+    return $year % 4 == 0 && ($year % 100 != 0 || $year % 400 == 0);
 }
 
 /**
