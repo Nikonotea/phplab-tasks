@@ -24,11 +24,15 @@ function snakeCaseToCamelCase(string $input): string
  */
 function mirrorMultibyteString(string $input): string
 {
-    $strrev = '';
-    for ($i = mb_strlen($input, "UTF-8"); $i >= 0; $i--) {
-        $strrev .= mb_substr($input, $i, 1, "UTF-8");
-    }
-    return $strrev;
+    $arr = explode(' ', $input);
+    $arr = array_map(function ($str) {
+        $result = '';
+        for ($i = mb_strlen($str); $i >= 0; $i--) {
+            $result .= mb_substr($str, $i, 1);
+        }
+        return $result;
+    }, $arr);
+    return implode(' ', $arr);
 }
 
 /**
@@ -45,6 +49,10 @@ function mirrorMultibyteString(string $input): string
  * @param  string $noun
  * @return string
  */
-function getBrandName(string $noun)
+function getBrandName(string $noun): string
 {
+    if (substr($noun, 0, 1) === substr($noun, -1)) {
+        return ucfirst($noun . substr($noun, 1));
+    }
+    return 'The ' . ucfirst($noun);
 }
