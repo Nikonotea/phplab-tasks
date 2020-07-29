@@ -5,7 +5,7 @@
  *
  * @return string
  */
-function sayHello()
+function sayHello(): string
 {
     return 'Hello';
 }
@@ -17,7 +17,7 @@ function sayHello()
  * @param $arg
  * @return string
  */
-function sayHelloArgument($arg)
+function sayHelloArgument($arg): string
 {
     return "Hello $arg";
 }
@@ -33,9 +33,11 @@ function sayHelloArgument($arg)
  * @return string
  * @throws InvalidArgumentException
  */
-function sayHelloArgumentWrapper($arg)
+function sayHelloArgumentWrapper($arg): string
 {
-    // put your code here
+    if (!is_numeric($arg) || !is_string($arg) || !is_bool($arg)) {
+        throw new InvalidArgumentException();
+    }
 
     return sayHelloArgument($arg);
 }
@@ -46,10 +48,10 @@ function sayHelloArgumentWrapper($arg)
  *
  * @return array
  */
-function countArguments()
+function countArguments(): array
 {
     return [
-        'argument_count'  => func_num_args(),
+        'argument_count' => func_num_args(),
         'argument_values' => func_get_args(),
     ];
 }
@@ -67,7 +69,13 @@ function countArguments()
  * @return array
  * @throws InvalidArgumentException
  */
-function countArgumentsWrapper()
+function countArgumentsWrapper(...$arg): array
 {
-    // put your code here
+    foreach (func_get_args() as $arg) {
+        if (!is_string($arg)) {
+            throw new InvalidArgumentException('Argument is not a string');
+        }
+    }
+
+    return countArguments($arg);
 }
