@@ -16,6 +16,10 @@ if (isset($_GET['filter_by_first_letter'])) {
     $letter = $_GET['filter_by_first_letter'];
     $airports = getAirportsByFirstLetter($airports, $letter);
 }
+if (isset($_GET['filter_by_state'])) {
+    $state = $_GET['filter_by_state'];
+    $airports = getAirportsByState($airports, $state);
+}
 
 // Sorting
 /**
@@ -116,7 +120,9 @@ $airports = array_slice($airports, 0, $perPage);
             <tr>
                 <td><?= $airport['name'] ?></td>
                 <td><?= $airport['code'] ?></td>
-                <td><a href="#"><?= $airport['state'] ?></a></td>
+                <td>
+                    <a href="/?<?= http_build_query(array_merge($_GET, ['filter_by_state' => $airport['state']])) ?>"><?= $airport['state'] ?></a>
+                </td>
                 <td><?= $airport['city'] ?></td>
                 <td><?= $airport['address'] ?></td>
                 <td><?= $airport['timezone'] ?></td>
