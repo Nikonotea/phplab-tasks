@@ -27,9 +27,16 @@ function getAirportsByFirstLetter(array $airports, string $letter): array
 {
     $airportsByFirstLetter = [];
     foreach ($airports as $airport) {
-        if ($airport['name'][0] === $letter) {
+        if (ucfirst($airport['name'][0]) === $letter) {
             $airportsByFirstLetter[] = $airport;
         }
     }
     return $airportsByFirstLetter;
+}
+
+function getAirportsByState($airports, $state)
+{
+    return array_filter($airports, function ($s) use ($state) {
+        return $s['state'] === $state;
+    });
 }
