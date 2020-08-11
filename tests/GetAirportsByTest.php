@@ -4,27 +4,54 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-class GetUniqueFirstLettersTest extends TestCase
+class GetAirportsByTest extends TestCase
 {
     /**
      * @dataProvider positiveDataProvider
      */
-    public function testPositive($input, $expected)
+    public function testPositive($input, $param, $expected)
     {
-        $this->assertEquals($expected, getUniqueFirstLetters($input));
+        $this->assertEquals($expected, getAirportsByState($input, $param));
     }
 
     public function positiveDataProvider()
     {
         return [
-            [[
-                ["name" => "Austin Bergstrom International Airport"],
-                ["name" => "Baltimore Washington Airport"],
-                ["name" => "Charleston International Airport"],
-                ["name" => "Kansas City International Airport"],
-                ["name" => "Washington Ronald Reagan National Airport"],
-                ["name" => "Orlando International Airport"]
-            ], ['A', 'B', 'C', 'K', 'O', 'W']
+            [
+                [
+                    ["state" => "New Mexico"],
+                    ["state" => "Georgia"],
+                    ["state" => "Texas"],
+                    ["state" => "Tennessee"],
+                    ["state" => "Idaho"],
+                    ["state" => "Georgia"],
+                    ["state" => "Virginia"],
+                    ["state" => "Ohio"],
+                    ["state" => "Georgia"],
+                    ["state" => "Minnesota"],
+                    ["state" => "Florida"],
+                ],
+                'Georgia',
+                [
+                    ["state" => "Georgia"],
+                    ["state" => "Georgia"],
+                    ["state" => "Georgia"]
+                ]
+            ],
+            [
+                [
+                    ["state" => "New Mexico"],
+                    ["state" => "Georgia"],
+                    ["state" => "Texas"],
+                    ["state" => "Tennessee"],
+                    ["state" => "Idaho"]
+                ],
+                'Tennessee',
+                [
+                    [
+                        "state" => "Tennessee"
+                    ]
+                ]
             ]
         ];
     }
