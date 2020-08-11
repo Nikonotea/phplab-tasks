@@ -36,7 +36,7 @@ function getAirportsByFirstLetter(array $airports, string $letter): array
 
 function getAirportsByState($airports, $state)
 {
-    return array_filter($airports, function ($s) use ($state) {
-        return $s['state'] === $state;
-    });
+    return array_values(array_filter($airports, function ($s) use ($state) {
+        return strtolower($s['state']) === strtolower($state);
+    }));
 }
