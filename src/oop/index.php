@@ -72,7 +72,7 @@ ini_set('display_errors', 'on');
             <?php
             if (isset($getRequest) && isset($postRequest) || isset($postRequest)) {
                 $key = 'post-page';
-            } elseif (!is_null($getRequest)) {
+            } elseif (isset($getRequest)) {
                 $key = 'get-page';
             } else {
                 $key = null;
