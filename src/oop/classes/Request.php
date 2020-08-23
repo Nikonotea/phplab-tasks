@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . '/Session.php';
-require_once __DIR__ . '/Cookies.php';
-
-
 class Request
 {
     private $getRequest;
