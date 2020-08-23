@@ -18,14 +18,14 @@ ini_set('display_errors', 'on');
 </head>
 <body>
 <table class="table-decoration">
-    <caption>home work 6 - oop</caption>
+    <caption>home work 6 - oop - class request</caption>
     <tr>
-        <th id="table-header">request</th>
-        <th id="table-header">form</th>
-        <th id="table-header">result</th>
+        <th id="table-col-name">request</th>
+        <th id="table-col-name">form</th>
+        <th id="table-col-name">result</th>
     </tr>
     <tr>
-        <td class="td-decoration-request">
+        <td class="td-class-name">
             <span>get</span>
         </td>
         <td>
@@ -45,7 +45,7 @@ ini_set('display_errors', 'on');
         </td>
     </tr>
     <tr>
-        <td class="td-decoration-request">
+        <td class="td-class-name">
             <span>post</span>
         </td>
         <td>
@@ -62,13 +62,13 @@ ini_set('display_errors', 'on');
         </td>
     </tr>
     <tr>
-        <td class="td-decoration-request">
+        <td class="td-class-name">
             <span>get + post</span>
         </td>
         <td>
             Should be entered above
         </td>
-        <td>
+        <td class="td-decoration-result">
             <?php
             if (isset($getRequest) && isset($postRequest) || isset($postRequest)) {
                 $key = 'post-page';
@@ -83,13 +83,13 @@ ini_set('display_errors', 'on');
         </td>
     </tr>
     <tr>
-        <td class="td-decoration-request">
+        <td class="td-class-name">
             <span>all</span>
         </td>
         <td>
             Should be entered above
         </td>
-        <td>
+        <td class="td-decoration-result">
             <?php
             if (isset($key)) {
                 $allRequests = $request->all();
@@ -105,13 +105,13 @@ ini_set('display_errors', 'on');
         </td>
     </tr>
     <tr>
-        <td class="td-decoration-request">
+        <td class="td-class-name">
             <span>has</span>
         </td>
         <td>
             Should be entered above
         </td>
-        <td>
+        <td class="td-decoration-result">
             <?php
             if (isset($key) && $request->has($key)) {
                 echo 'True';
@@ -120,24 +120,24 @@ ini_set('display_errors', 'on');
         </td>
     </tr>
     <tr>
-        <td class="td-decoration-request">
+        <td class="td-class-name">
             <span>ip</span>
         </td>
         <td>
             -
         </td>
-        <td>
+        <td class="td-decoration-result">
             <?= $request->ip(); ?>
         </td>
     </tr>
     <tr>
-        <td class="td-decoration-request">
+        <td class="td-class-name">
             <span>useragent</span>
         </td>
         <td>
             -
         </td>
-        <td>
+        <td class="td-decoration-result">
             <?= $request->userAgent(); ?>
         </td>
     </tr>
