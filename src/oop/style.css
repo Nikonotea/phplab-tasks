@@ -70,3 +70,13 @@ span {
     background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
     color: #a00;
 }
+
+div.field {
+    padding-bottom: 5px;
+}
+div.field label {
+    display: block;
+    float: left;
+    width: 70px;
+    height: 15px;
+}
