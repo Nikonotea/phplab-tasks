@@ -20,7 +20,7 @@ ini_set('display_errors', 'on');
 <table class="table-decoration">
     <caption>home work 6 - oop - class request</caption>
     <tr>
-        <th id="table-col-name">request</th>
+        <th id="table-col-name">methods</th>
         <th id="table-col-name">form</th>
         <th id="table-col-name">result</th>
     </tr>
