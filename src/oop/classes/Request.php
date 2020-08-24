@@ -17,7 +17,7 @@ class Request
     public function query(string $key, $default = null)
     {
         if (array_key_exists($key, $this->getRequest)) {
-            return 'This is GET request with <strong>key</strong> = get-page and <strong>value</strong> = ' . $this->getRequest[$key];
+            return $this->getRequest[$key];
         }
         return $default;
     }
@@ -25,7 +25,7 @@ class Request
     public function post(string $key, $default = null)
     {
         if (array_key_exists($key, $this->postRequest)) {
-            return 'This is POST request with <strong>key</strong> = post-page and <strong>value</strong> = ' . $this->postRequest[$key];
+            return $this->postRequest[$key];
         }
         return $default;
     }

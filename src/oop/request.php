@@ -40,7 +40,8 @@ ini_set('display_errors', 'on');
         <td class="td-decoration-result">
             <?php
             $request = new Request();
-            echo $getRequest = $request->query('get-page');
+            $getRequest = $request->query('get-page');
+            echo 'This is POST request with <strong>key</strong> = post-page and <strong>value</strong> = ' . $getRequest;
             ?>
         </td>
     </tr>
@@ -58,7 +59,9 @@ ini_set('display_errors', 'on');
             </form>
         </td>
         <td class="td-decoration-result">
-            <?= $postRequest = $request->post('post-page'); ?>
+            <?php
+            $postRequest = $request->post('post-page');
+            echo 'This is POST request with <strong>key</strong> = post-page and <strong>value</strong> = ' . $postRequest; ?>
         </td>
     </tr>
     <tr>
