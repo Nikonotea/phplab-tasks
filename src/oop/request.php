@@ -112,11 +112,17 @@ ini_set('display_errors', 'on');
             <span>has</span>
         </td>
         <td>
-            Should be entered above
+            <form action="" method="get">
+                <label>Key
+                    <input type="text" name="has-request" required pattern="\w*-\w*" minlength="1" maxlength="10"
+                           placeholder="enter cookie's key">
+                </label>
+                <button type="submit">Has Request</button>
+            </form>
         </td>
         <td class="td-decoration-result">
             <?php
-            if (isset($key) && $request->has($key)) {
+            if ($request->has('has-request')) {
                 echo 'True';
             }
             ?>

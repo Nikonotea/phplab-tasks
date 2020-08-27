@@ -55,19 +55,39 @@ ini_set('display_errors', 'on');
         <td class="td-class-name">
             <span>get</span>
         </td>
-        <td class="td-decoration-result"></td>
+        <td class="td-decoration-result">
+            <form action="" method="get">
+                <label>Key
+                    <input type="text" name="get-cookie" required pattern="\w*" minlength="1" maxlength="10"
+                           placeholder="enter cookie's key">
+                </label>
+                <button type="submit">Get Cookie</button>
+            </form>
+        </td>
         <td class="td-decoration-demonstrate">
-            <?= $addCookie->get($cookieKey); ?>
+            <?php
+            $getCookieKey = $request->get('get-cookie');
+            echo $addCookie->get($getCookieKey);
+            ?>
         </td>
     </tr>
     <tr>
         <td class="td-class-name">
             <span>has</span>
         </td>
-        <td class="td-decoration-result"></td>
+        <td class="td-decoration-result">
+            <form action="" method="get">
+                <label>Key
+                    <input type="text" name="has-cookie" required pattern="\w*" minlength="1" maxlength="10"
+                           placeholder="enter cookie's key">
+                </label>
+                <button type="submit">Has Cookie</button>
+            </form>
+        </td>
         <td class="td-decoration-demonstrate">
             <?php
-            if (isset($cookieKey) && $addCookie->has($cookieKey)) {
+            $hasCookieKey = $request->get('has-cookie');
+            if ($addCookie->has($hasCookieKey)) {
                 echo 'True';
             }
             ?>
