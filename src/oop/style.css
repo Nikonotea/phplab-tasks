@@ -74,9 +74,14 @@ span {
 div.field {
     padding-bottom: 5px;
 }
+
 div.field label {
     display: block;
     float: left;
     width: 70px;
     height: 15px;
+}
+
+.td-decoration-action {
+    width: 500px;
 }
