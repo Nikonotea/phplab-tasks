@@ -1,13 +1,8 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__ . '/../classes/Request.php';
-require_once __DIR__ . '/../classes/Cookies.php';
+require_once __DIR__ . '/classes/Request.php';
+require_once __DIR__ . '/classes/Session.php';
 
-$request = new Request();
-$cookieKey = $request->get('cookie-key');
-$cookieValue = $request->get('cookie-value');
-$addCookie = new Cookies();
-$addCookie->set($cookieKey, $cookieValue);
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
@@ -21,11 +16,11 @@ ini_set('display_errors', 'on');
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home Work 6</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <table class="table-decoration">
-    <caption>home work 6 - oop - class cookies</caption>
+    <caption>home work 6 - oop - class session</caption>
     <tr>
         <th id="table-col-name">methods</th>
         <th id="table-col-name">action</th>
@@ -35,18 +30,25 @@ ini_set('display_errors', 'on');
         <td class="td-class-name">
             <span>set</span>
         </td>
-        <td class="td-decoration-result">
+        <td class="td-decoration-action">
             <form action="" method="get">
                 <label>Key
-                    <input type="text" name="cookie-key" required pattern="\w*" minlength="1" maxlength="10"
-                           placeholder="enter cookie's key">
+                    <input type="text" name="session-key" required pattern="\w*" minlength="1" maxlength="10"
+                           placeholder="enter session key">
                 </label>
                 <label>Value
-                    <input type="text" name="cookie-value" required pattern="\w*" minlength="1" maxlength="10"
-                           placeholder="enter cookie's value">
+                    <input type="text" name="session-value" required pattern="\w*" minlength="1" maxlength="10"
+                           placeholder="enter session value">
                 </label>
-                <button type="submit">Set Cookie</button>
+                <button type="submit">Set data Session</button>
             </form>
+            <?php
+            $request = new Request();
+            $sessionKey = $request->get('session-key');
+            $sessionValue = $request->get('session-value');
+            $setSession = new Session();
+            $setSession->set($sessionKey, $sessionValue);
+            ?>
         </td>
         <td class="td-decoration-demonstrate">
         </td>
@@ -55,19 +57,21 @@ ini_set('display_errors', 'on');
         <td class="td-class-name">
             <span>get</span>
         </td>
-        <td class="td-decoration-result"></td>
+        <td class="td-decoration-action">
+        </td>
         <td class="td-decoration-demonstrate">
-            <?= $addCookie->get($cookieKey); ?>
+            <?= $setSession->get($sessionKey);
+            ?>
         </td>
     </tr>
     <tr>
         <td class="td-class-name">
             <span>has</span>
         </td>
-        <td class="td-decoration-result"></td>
+        <td class="td-decoration-action"></td>
         <td class="td-decoration-demonstrate">
             <?php
-            if (isset($cookieKey) && $addCookie->has($cookieKey)) {
+            if (isset($sessionKey) && $setSession->has($sessionKey)) {
                 echo 'True';
             }
             ?>
@@ -77,17 +81,17 @@ ini_set('display_errors', 'on');
         <td class="td-class-name">
             <span>all</span>
         </td>
-        <td class="td-decoration-result"></td>
+        <td class="td-decoration-action"></td>
         <td class="td-decoration-demonstrate">
             <?php
-            if (isset($cookieKey)) {
-                $allCookies = $addCookie->all();
-                if (is_array($allCookies)) {
-                    foreach ($allCookies as $key => $item) {
+            if (isset($sessionKey)) {
+                $allSession = $setSession->all();
+                if (is_array($allSession)) {
+                    foreach ($allSession as $key => $item) {
                         echo $key . ' => ' . $item . '; ';
                     }
                 } else {
-                    echo $allCookies;
+                    echo $allSession;
                 }
             }
             ?>
@@ -97,22 +101,45 @@ ini_set('display_errors', 'on');
         <td class="td-class-name">
             <span>remove</span>
         </td>
-        <td class="td-decoration-result">
+        <td class="td-decoration-action">
             <form action="" method="get">
-                <label>Key for remove Cookie
-                    <input type="text" name="cookie-remove" required pattern="\w*" minlength="1" maxlength="10"
-                           placeholder="enter cookie's key">
+                <label>Key for remove Session
+                    <input type="text" name="session-remove" required pattern="\w*" minlength="1" maxlength="10"
+                           placeholder="enter session key">
                 </label>
-                <button type="submit">Remove Cookie</button>
+                <button type="submit">Remove Session</button>
+                <?php
+                if ($request->get('session-remove')) {
+                    $sessionRemove = $request->get('session-remove');
+                    if (($setSession->has($sessionRemove)) === true) {
+                        $setSession->remove($sessionRemove);
+                    }
+                }
+
+                ?>
             </form>
         </td>
         <td class="td-decoration-demonstrate">
-            <?php
-            $cookieRemove = $request->get('cookie-remove');
-            if (($addCookie->has($cookieRemove)) === true) {
-                $addCookie->remove($cookieRemove);
-            }
-            ?>
+        </td>
+    </tr>
+    <tr>
+        <td class="td-class-name">
+            <span>clear</span>
+        </td>
+        <td class="td-decoration-action">
+            <form action="" method="get">
+                <label>
+                    <input type="text" name="session-clear" hidden>
+                </label>
+                <button type="submit">Remove Session</button>
+                <?php
+                if ($request->get('clear')) {
+                    $setSession->clear();
+                }
+                ?>
+            </form>
+        </td>
+        <td class="td-decoration-demonstrate">
         </td>
     </tr>
 </table>
