@@ -4,14 +4,12 @@
  * Transform it into camel cased string and return (i.e. helloWorld or thisIsHomeTask)
  * @see http://xahlee.info/comp/camelCase_vs_snake_case.html
  *
- * @param  string $input
+ * @param string $input
  * @return string
  */
 function snakeCaseToCamelCase(string $input): string
 {
-    return lcfirst(implode('', array_map(function ($x) {
-        return ucfirst($x);
-    }, explode('_', $input))));
+    return lcfirst(str_replace('_', '', ucwords($input, '_')));
 }
 
 /**
@@ -19,7 +17,7 @@ function snakeCaseToCamelCase(string $input): string
  * Mirror each word individually and return transformed text (i.e. 'АВЫФ ждло')
  * !!! do not change words order
  *
- * @param  string $input
+ * @param string $input
  * @return string
  */
 function mirrorMultibyteString(string $input): string
@@ -46,12 +44,12 @@ function mirrorMultibyteString(string $input): string
  * europe -> Europeurope
  * Implement this logic.
  *
- * @param  string $noun
+ * @param string $noun
  * @return string
  */
 function getBrandName(string $noun): string
 {
-    if (substr($noun, 0, 1) === substr($noun, -1)) {
+    if ($noun[0] === $noun[-1]) {
         return ucfirst($noun . substr($noun, 1));
     }
     return 'The ' . ucfirst($noun);
