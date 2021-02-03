@@ -5,7 +5,7 @@
  * without changing the order.
  * Example: [1,3,2] => [1,3,3,3,2,2]
  *
- * @param  array $input
+ * @param array $input
  * @return array
  */
 function repeatArrayValues(array $input): array
@@ -24,7 +24,7 @@ function repeatArrayValues(array $input): array
  * Return the lowest unique value or 0 if there is no unique values or array is empty.
  * Example: [1, 2, 3, 2, 1, 5, 6] => 3
  *
- * @param  array $input
+ * @param array $input
  * @return int
  */
 function getUniqueValue(array $input): int
@@ -32,11 +32,10 @@ function getUniqueValue(array $input): int
     if (empty($input)) {
         return 0;
     }
-    $arrayCountUniqueValues = array_count_values($input);
     $arrayUniqueValue = [];
-    foreach ($arrayCountUniqueValues as $key => $value) {
+    foreach (array_count_values($input) as $key => $value) {
         if ($value === 1) {
-            array_push($arrayUniqueValue, $key);
+            $arrayUniqueValue[] = $key;
         }
     }
     return $arrayUniqueValue ? min($arrayUniqueValue) : 0;
@@ -63,7 +62,7 @@ function getUniqueValue(array $input): int
  *  'yellow' => ['orange', 'potato'],
  * ]
  *
- * @param  array $input
+ * @param array $input
  * @return array
  */
 function groupByTag(array $input): array
