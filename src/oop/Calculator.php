@@ -128,6 +128,7 @@ class Calculator
     {
         // TODO implement undo logic here
 
+        array_pop($this->intents);
         return $this;
     }
 
@@ -140,6 +141,7 @@ class Calculator
     {
         // TODO implement replay logic here
 
+        $this->intents[] = end($this->intents);
         return $this;
     }
 
